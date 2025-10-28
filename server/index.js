@@ -4,7 +4,7 @@ const io = new Server(8000, {
    cors: {
     origin: [
       "http://localhost:3000",              
-      "https://video-call-alpha-three.vercel.app" 
+      "https://video-call-alpha-three.vercel.app"
     ],
 });
 
