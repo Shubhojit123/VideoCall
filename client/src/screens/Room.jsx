@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import peer from "../service/peer";
 import { useSocket } from "../context/SocketProvider";
 import { Phone, PhoneOff, Video, Mic, MicOff, VideoOff, Send, UserCheck, UserX, LogOut } from "lucide-react";
+import MobileRoom from "./MobileRoom";
 
 const RoomPage = () => {
+  const [isMobile] = useState(window.innerWidth <= 768);
   const socket = useSocket();
   const [remoteSocketId, setRemoteSocketId] = useState(null);
   const [myStream, setMyStream] = useState();
@@ -138,6 +140,12 @@ const RoomPage = () => {
     setRemoteStream(null);
     setRemoteSocketId(null);
     navigate("/");
+  }
+
+  if (isMobile) {
+    return (
+      <MobileRoom />
+    )
   }
 
   const styles = {
@@ -318,7 +326,10 @@ const RoomPage = () => {
             )}
             {myStream && (
               <div style={styles.videoWrapper}>
-                <div style={styles.videoLabel}>You</div>
+                {!isMuted && (<div style={styles.videoLabel}>You</div>)}
+                {isMuted && (
+                  <div style={styles.videoLabel}><MicOff size={15} /></div>
+                )}
                 <div style={styles.playerWrapper}>
                   <ReactPlayer
                     playing
