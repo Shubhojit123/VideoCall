@@ -6,6 +6,7 @@ const io = new Server(8000, {
       "http://localhost:3000",              
       "https://video-call-alpha-three.vercel.app"
     ],
+   }
 });
 
 const emailToSocketIdMap = new Map();
