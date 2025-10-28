@@ -1,7 +1,7 @@
 const { Server } = require("socket.io");
 
 const io = new Server(8000, {
-  cors: true,
+  cors: ["https://video-call-alpha-three.vercel.app"]},
 });
 
 const emailToSocketIdMap = new Map();
